@@ -14,7 +14,7 @@ public:
 	Point(int x, int y) {
 		this->x = x;
 		this->y = y;
-		printf("Point(int x,int y)\n");
+		printf("Point(%i,%i)\n", x,y);
 	}
 	Point(const Point &p) {
 		this->x = p.x;
@@ -35,7 +35,7 @@ public:
 	}
 	void Reset();
 	~Point() {
-		printf("~Point(%i,%i)\n",x,y);
+		printf("~Point()\n");
 	}
 };
 
@@ -54,7 +54,7 @@ public:
 	}
 	Point3D(int x, int y, int z) : Point(x,y){
 		this->z = z;
-		printf("Point3D(int z)\n");
+		printf("Point3D(%i)\n",z);
 	}
 	Point3D(const Point3D &p){
 		this->x = p.x;
@@ -69,7 +69,7 @@ public:
 		return this->z;
 	}
 	~Point3D(){
-		printf("~Point3D(%i,%i,%i)\n",x,y,z);
+		printf("~Point3D()\n");
 	}
 };
 
@@ -86,7 +86,7 @@ public:
 	Vector(int x1,int x2,int y1, int y2) {
 		p1 = new Point(x1,y1);
 		p2 = new Point(x2,y2);
-		printf("Vector(int x1,int x2,int y1, int y2)\n");
+		printf("Vector(%i,%i,%i,%i)\n", x1, x2, y1, y2);
 	}
 	Vector(const Vector &v) {
 		p1 = new Point(*(v.p1));
@@ -105,11 +105,15 @@ int main() {
 
 	{
 		printf("___________________________\n");
+		printf("Статическое создание объектов\n");
+		printf("___________________________\n");
 		Point p1;
 		Point p2 = Point(1, 2);
 		Point p3 = Point(p2);
 	}
 	{
+		printf("___________________________\n");
+		printf("Динамическое удаление объектов\n");
 		printf("___________________________\n");
 		Point *p1 = new Point;
 		Point *p2 = new Point(1, 2);
@@ -121,6 +125,8 @@ int main() {
 	}
 	{
 		printf("___________________________\n");
+		printf("Геттер динамического объекта класса\n");
+		printf("___________________________\n");
 		Point *p = new Point(2, 3);
 		printf("X:%i\n", p->GetX());
 		p->Reset();
@@ -129,17 +135,23 @@ int main() {
 	}
 	{
 		printf("___________________________\n");
+		printf("Помещение объекта в свой тип\n");
+		printf("___________________________\n");
 		Point3D *p = new Point3D(1, 2, 3);
 
 		delete p;
 	}
 	{
 		printf("___________________________\n");
+		printf("Помещение объекта в родительский тип\n");
+		printf("___________________________\n");
 		Point *p = new Point3D(1, 2, 3);
 
 		delete p;
 	}
 	{
+		printf("___________________________\n");
+		printf("Создание вектора и конструктор копирования\n");
 		printf("___________________________\n");
 		Vector *v1 = new Vector;
 		Vector* v2 = new Vector(1,2,1,3);
