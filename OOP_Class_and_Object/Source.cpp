@@ -34,7 +34,7 @@ public:
 		return this->y;
 	}
 	void Reset();
-	~Point() {
+	virtual ~Point() {
 		printf("~Point()\n");
 	}
 };
@@ -68,7 +68,7 @@ public:
 	int GetZ() {
 		return this->z;
 	}
-	~Point3D(){
+	virtual ~Point3D(){
 		printf("~Point3D()\n");
 	}
 };
@@ -113,7 +113,7 @@ int main() {
 	}
 	{
 		printf("___________________________\n");
-		printf("Динамическое удаление объектов\n");
+		printf("Динамическое создание объектов\n");
 		printf("___________________________\n");
 		Point *p1 = new Point;
 		Point *p2 = new Point(1, 2);
@@ -151,12 +151,20 @@ int main() {
 	}
 	{
 		printf("___________________________\n");
-		printf("Создание вектора и конструктор копирования\n");
+		printf("Создание вектора\n");
 		printf("___________________________\n");
 		Vector *v1 = new Vector;
+		printf("___________________________\n");
+		printf("Создание вектора c параметрами\n");
+		printf("___________________________\n");
 		Vector* v2 = new Vector(1,2,1,3);
+		printf("___________________________\n");
+		printf("Создание вектора конструктором копирования\n");
+		printf("___________________________\n");
 		Vector* v3 = new Vector(*v2);
-
+		printf("___________________________\n");
+		printf("Удаление векторов\n");
+		printf("___________________________\n");
 		delete v1;
 		delete v2;
 		delete v3;
